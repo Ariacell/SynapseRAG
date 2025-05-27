@@ -13,6 +13,21 @@ will expose
 curl -X POST localhost:11434/api/generate -d "{\"model\":\"mistral\", \"prompt\":\"Are you working?\", \"stream\": false}"
 ```
 
+## Generating embeddings and prompting
+
+This project uses uv as the python environment manager.
+
+Embeddings can be generated from the dummy "test_vault" directory by running
+```sh
+uv run src/generate_embeddings.py
+```
+Queries can be run either as standalone prompts or as chat with history via 
+```sh
+uv run src/query_with_context.py
+# or
+uv run src/chat_with_context.py
+```
+respectively.
 
 ## Getting a kubernetes distribution of Ollama
 
