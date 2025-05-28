@@ -36,6 +36,43 @@ services:
     volumes:
       - qdrant_storage:/qdrant/storage
 
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    restart: always
+    ports:
+      - "3000:8080"
+    volumes:
+      - open-webui:/app/backend/data
+
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    container_name: searxng
+    restart: always
+    ports:
+      - "4000:8080"
+    volumes:
+      - ./searXNG/settings.yml:/etc/searxng/settings.yml
+
+  comfyui-boot:
+      image: yanwk/comfyui-boot:cu124-slim
+      stdin_open: true
+      tty: true
+      container_name: comfyui-cu124
+      ports:
+          - 8288:8188
+      volumes:
+          - './vision/ComfyUIdocker:/root'
+      deploy:
+          resources:
+              reservations:
+                  devices:
+                      - driver: nvidia
+                        count: all
+                        capabilities:
+                            - gpu
+
 volumes:
   ollama_data:
   qdrant_storage:
+  open-webui:

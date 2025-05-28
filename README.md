@@ -1,6 +1,7 @@
 
+# First time startup
 
-## Starting the model and database
+## Starting the services
 
 Running 
 ```sh
@@ -8,10 +9,29 @@ docker compose up
 ```
 will expose 
 - a qdrant database, used for text embedding storage, and
-- an ollama instance running mistral7b, which can be prompted via something like
+
+### Services
+
+#### Ollama running mistral7b
+
+An ollama instance running mistral7b, which can be prompted via something like
 ```sh
 curl -X POST localhost:11434/api/generate -d "{\"model\":\"mistral\", \"prompt\":\"Are you working?\", \"stream\": false}"
 ```
+
+#### Qdrant DB for vector embeddings
+
+#### OpenWebUI
+
+For nicer adhoc prompting UI for the Ollama models
+
+#### SearXNG
+
+#### ComfyUI
+
+For image generation.
+This example workflow is using this model: https://comfyui-wiki.com/en/tutorial/advanced/flux1-comfyui-guide-workflow-and-examples#comfy-org-fp8-checkpoint-version
+
 
 ## Generating embeddings and prompting
 
